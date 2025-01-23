@@ -1,0 +1,48 @@
+  <!-- INTRODUCTION -->
+
+  <div class="intro mx-[2.5em] mt-20  flex">
+
+    <div class="text m-20">
+      <h2 class="text-violet-200 font-bold text-2xl mb-10">Ensemble.Luttons.</h2>
+      <p class="justify-left mb-10">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum at laudantium consectetur vitae, saepe accusamus minus, pariatur, blanditiis dolorum consequatur explicabo necessitatibus? Saepe, ipsam voluptatibus.</p>
+      <button class="rounded-xl bg-violet-200 text-white px-5 py-1">
+        <a href="https://www.auvergne-rhone-alpes.ars.sante.fr/covid-19-comment-se-proteger-contre-le-virus#:~:text=Gestes%20barrières%20et%20vaccination%20sont,efficacement%20contre%20le%20Covid-19." target="_blank">Comment se proteger</a>
+      </button>
+    </div>
+    
+    <div class="image">
+      <img src="assets/illustration.png" alt="illustration"/>
+    </div>
+  
+   </div>
+  
+   <!-- SYMPTOME -->
+  
+  <section class="symptome text-center">
+    <h2 class="text-violet-200 font-bold text-2xl mb-10 text-center">Symptome du Coronavirus</h2>
+    <p class="text-center">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni perferendis quidem assumenda qui error modi quaerat odit debitis?</p>
+  
+  
+    <div class="mb-20 mx-20 mt-10 grid gap-x-[20px] gap-y-[10px] grid-cols-2 grid-rows-2 ">
+      <div *ngFor="let asset of assets" class="flex p-10 bg-white ">
+  
+        <div class="pt-7 mr-5">
+          <img src="{{asset.image}}" alt="illustrations des sypmtomes">
+        </div>
+        <div class="flex flex-col gap-4">
+          <span class="text-violet">{{asset.title}}</span>
+          <p class="text-left">{{asset.content}}</p>
+        </div>
+    
+        
+      </div>
+    </div>
+  
+  
+    
+  
+  </section>
+  
+  <footer class="text-center b-0">DC1 2020-NTCHANGA Georges</footer>
+  
+  
