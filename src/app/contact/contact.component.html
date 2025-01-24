@@ -1,6 +1,6 @@
 <!-- component -->
 <h1 class="text-5xl text-center mt-5">CONTACT</h1>
-<div class="min-w-screen min-h-screen  flex items-center justify-center px-5 py-5">
+<form (ngSubmit)="register()" [formGroup]="userForm" class="min-w-screen min-h-screen  flex items-center justify-center px-5 py-5">
 
     <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
         <div class="md:flex w-full">
@@ -14,47 +14,54 @@
                 </div>
                 <div>
                     <div class="flex -mx-3">
-                        <div class="w-1/2 px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">First name</label>
+                        <div class="w-1/2 px-3 mb-5 flex flex-col">
+                            <label for="" class="text-xs font-semibold px-1">First name *</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="John">
+                                <input formControlName="userfirstname" type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="John">
+
                             </div>
+                            <p *ngIf="userForm.get('userfirstname')?.dirty && userForm.get('userfirstname')?.hasError('required')" class="text-red-500">firstname is required</p>
+                            <p *ngIf="userForm.get('userfirstname')?.hasError('minlength')" class="text-red-500">firstname should be 4 character min</p>
                         </div>
-                        <div class="w-1/2 px-3 mb-5">
+                        <div class="flex flex-col w-1/2 px-3 mb-5">
                             <label for="" class="text-xs font-semibold px-1">Last name</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
-                                <input type="text" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Smith">
+                                <input type="text" formControlName="userlastname" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="Smith">
                             </div>
+                            <p *ngIf="userForm.get('userlastname')?.dirty && userForm.get('userlastname')?.hasError('required')" class="text-red-500">lastname is required</p>
+                            <p *ngIf="userForm.get('userlastname')?.hasError('minlength')" class="text-red-500">lastname should be 4 character min</p>
                         </div>
                     </div>
                     <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-5">
-                            <label for="" class="text-xs font-semibold px-1">Email</label>
+                        <div class="flex flex-col w-full px-3 mb-5">
+                            <label for="" class="text-xs font-semibold px-1">Email *</label>
                             <div class="flex">
                                 <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                <input type="email" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="johnsmith@example.com">
+                                <input formControlName="useremail" type="email" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="johnsmith@example.com">
                             </div>
+                            <p *ngIf="userForm.get('useremail')?.dirty && userForm.get('useremail')?.hasError('required')" class="text-red-500">email is required</p>
+                            <p *ngIf="userForm.get('useremail')?.hasError('email')" class="text-red-500">message should be 2 character min</p>
                         </div>
                     </div>
                     <div class="flex -mx-3">
-                        <div class="w-full px-3 mb-12">
-                            <label for="" class="text-xs font-semibold px-1">Password</label>
-                            <div class="flex">
-                                <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
-                                <input type="password" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="************">
-                            </div>
+                        <div class="flex flex-col ml-10 w-full px-3 mb-12 ">
+                          
+                          <textarea formControlName="usermessage"  class="-mx-3 h-24 w-full -ml-10 pl-2 pr-1 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder=" * Your message"></textarea>
+                          <p *ngIf="userForm.get('usermessage')?.dirty && userForm.get('usermessage')?.hasError('required')" class="text-red-500">message is required</p>
+                            <p *ngIf="userForm.get('usermessage')?.hasError('minlength')" class="text-red-500">email is not valid</p>  
                         </div>
                     </div>
                     <div class="flex -mx-3">
                         <div class="w-full px-3 mb-5">
-                            <button class="block w-full max-w-xs mx-auto bg-violet hover:bg-violet-200 focus:bg-violet-200 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
+                            <button type="submit" [disabled]="userForm.invalid" class="block w-full max-w-xs mx-auto bg-violet hover:bg-violet-200 focus:bg-violet-200 text-white rounded-lg px-3 py-3 font-semibold">REGISTER NOW</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+
 
